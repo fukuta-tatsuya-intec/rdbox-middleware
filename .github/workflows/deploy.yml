@@ -12,7 +12,7 @@ jobs:
     - name: Setup gpg.
       run: |
         echo "$GPG_PRIVATE_KEY" > ~/.gpg-secret.key.pem
-        gpg --import ~/.gpg-secret.key.pem
+        echo "$GPG_PASSPHRASE" | gpg --batch --yes --passphrase-fd 0 --import ~/.gpg-secret.key.pem
         echo "$GPG_PASSPHRASE" > ~/.gpg-passphrase
       shell: bash
     - name: Install dependency packages.
