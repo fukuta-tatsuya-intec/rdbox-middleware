@@ -9,12 +9,10 @@ fi
 
 version_no=$1
 architect_code=$2
-branch="master"
 
-git pull origin "${branch}"
-git checkout "${branch}"
+mkdir ../
 
-if ! gbp buildpackage -p./gpg-passphrase.sh --git-pristine-tar-commit --git-export-dir=../build-area -S -sd;
+if ! gbp buildpackage -p"$(pwd)"/gpg-passphrase.sh --git-pristine-tar-commit --git-export-dir=../build-area -S -sd;
 then
   echo "Retry Over."
   exit 1

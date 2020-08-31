@@ -14,6 +14,11 @@ jobs:
         echo "$GPG_PRIVATE_KEY" > ~/.gpg-secret.key.pem
         echo "$GPG_PASSPHRASE" | gpg --batch --yes --passphrase-fd 0 --import ~/.gpg-secret.key.pem
         echo "$GPG_PASSPHRASE" > ~/.gpg-passphrase
+        echo "use-agent
+        pinentry-mode loopback" > ~/.gnupg/gpg.conf
+        echo "pinentry-program /usr/bin/pinentry-gtk-2
+        allow-loopback-pinentry" > ~/.gnupg/gpg-agent.conf
+        echo RELOADAGENT | gpg-connect-agent
       shell: bash
     - name: Install dependency packages.
       run: |
