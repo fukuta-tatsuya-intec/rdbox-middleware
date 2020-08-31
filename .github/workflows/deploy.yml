@@ -33,6 +33,7 @@ jobs:
           wget \
           qemu \
           qemu-user-static \
+          cdbs \
           debhelper
       shell: bash
     - name: Install Keying.
