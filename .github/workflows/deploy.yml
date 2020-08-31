@@ -51,10 +51,12 @@ jobs:
         sudo mkdir -p /var/cache/pbuilder/raspbian-buster-armhf/aptcache/
         sudo chmod -R 777 /var/cache/pbuilder
         sudo OS=raspbian DIST=buster ARCH=armhf pbuilder --create
+        sudo OS=debian DIST=buster ARCH=amd64 pbuilder --create
       shell: bash
     - name: Build deb packages.
       run: |
         bash ./build_deb_cloud.sh 0.2.0 armhf
+        bash ./build_deb_cloud.sh 0.2.0 amd64
     env:
       GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
