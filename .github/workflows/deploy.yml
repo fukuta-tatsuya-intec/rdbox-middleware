@@ -39,8 +39,8 @@ jobs:
     - name: Bootstrap OS.
       run: |
         cp -rf ./.pbuilderrc ~/.pbuilderrc
-        sudo mkdir /var/cache/pbuilder
-        sudo chmod 777 /var/cache/pbuilder
+        sudo mkdir -p /var/cache/pbuilder
+        sudo chmod -R 777 /var/cache/pbuilder
         OS=raspbian DIST=buster ARCH=armhf pbuilder --create
       shell: bash
     - name: Build deb packages.
