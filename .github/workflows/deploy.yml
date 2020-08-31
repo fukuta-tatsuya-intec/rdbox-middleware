@@ -26,6 +26,8 @@ jobs:
           devscripts \
           dput \
           wget \
+          qemu \
+          qemu-user-static \
           debhelper
       shell: bash
     - name: Install Keying.
