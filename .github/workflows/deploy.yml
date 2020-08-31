@@ -35,7 +35,7 @@ jobs:
         sudo apt install -y \
           ubuntu-keyring \
           debian-archive-keyring
-        sudo wget -P /root/raspbian-archive-keyring_20120528.2_all.deb http://archive.raspbian.org/raspbian/pool/main/r/raspbian-archive-keyring/raspbian-archive-keyring_20120528.2_all.deb
+        sudo curl http://archive.raspbian.org/raspbian/pool/main/r/raspbian-archive-keyring/raspbian-archive-keyring_20120528.2_all.deb -o /root/raspbian-archive-keyring_20120528.2_all.deb
         sudo dpkg -i /root/raspbian-archive-keyring_20120528.2_all.deb
       shell: bash
     - name: Bootstrap OS.
