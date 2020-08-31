@@ -42,6 +42,7 @@ jobs:
       run: |
         cp -rf ./.pbuilderrc ~/.pbuilderrc
         sudo mkdir -p /var/cache/pbuilder
+        sudo mkdir -p /var/cache/pbuilder/raspbian-buster-armhf/aptcache/
         sudo chmod -R 777 /var/cache/pbuilder
         OS=raspbian DIST=buster ARCH=armhf pbuilder --create
       shell: bash
