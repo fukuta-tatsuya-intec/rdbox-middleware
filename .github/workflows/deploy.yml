@@ -38,7 +38,7 @@ jobs:
       shell: bash
     - name: Bootstrap OS.
       run: |
-        cp -rf .pbuilderrc
+        cp -rf ./.pbuilderrc ~/.pbuilderrc
         OS=raspbian DIST=buster ARCH=armhf pbuilder --create
       shell: bash
     - name: Build deb packages.
