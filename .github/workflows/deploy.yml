@@ -49,6 +49,7 @@ jobs:
         sudo cp -rf ./.pbuilderrc /root/.pbuilderrc
         sudo mkdir -p /var/cache/pbuilder
         sudo mkdir -p /var/cache/pbuilder/raspbian-buster-armhf/aptcache/
+        sudo mkdir -p /var/cache/pbuilder/debian-buster-amd64/aptcache/
         sudo chmod -R 777 /var/cache/pbuilder
         sudo OS=raspbian DIST=buster ARCH=armhf pbuilder --create
         sudo OS=debian DIST=buster ARCH=amd64 pbuilder --create
