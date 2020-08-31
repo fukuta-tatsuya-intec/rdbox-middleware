@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# != 3 ]; then
+if [ $# != 2 ]; then
   echo "Invalid Argment."
   echo " You need to specify the version number. (like 0.0.1)"
   echo " You need to specify Architect. (like armhf, amd64)"

@@ -1,5 +1,5 @@
 
-name: RDBOX Middleware
+name: RDBOX Middleware Build and Deploy
 on:
   push:
     branches:
