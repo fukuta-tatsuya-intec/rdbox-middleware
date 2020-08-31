@@ -17,34 +17,33 @@ jobs:
       shell: bash
     - name: Install dependency packages.
       run: |
-        apt update
-        apt install -y \
+        sudo apt update
+        sudo apt install -y \
           git-buildpackage \
           quilt \
           pbuilder \
           debootstrap \
           devscripts \
           dput \
+          wget \
           debhelper
       shell: bash
     - name: Install Keying.
       run: |
-        apt install -y \
+        sudo apt install -y \
           ubuntu-keyring \
           debian-archive-keyring
-        wget http://archive.raspbian.org/raspbian/pool/main/r/raspbian-archive-keyring/raspbian-archive-keyring_20120528.2_all.deb
-        dpkg -i raspbian-archive-keyring_20120528.2_all.deb
+        sudo wget http://archive.raspbian.org/raspbian/pool/main/r/raspbian-archive-keyring/raspbian-archive-keyring_20120528.2_all.deb
+        sudo dpkg -i raspbian-archive-keyring_20120528.2_all.deb
       shell: bash
     - name: Bootstrap OS.
       run: |
         cp -rf .pbuilderrc
         OS=raspbian DIST=buster ARCH=armhf pbuilder --create
-        OS=debian DIST=buster ARCH=amd64 pbuilder --create
       shell: bash
     - name: Build deb packages.
       run: |
         bash build_deb_cloud.sh 0.2.0 armhf
-        bash build_deb_cloud.sh 0.2.0 amd64
     env:
       GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
