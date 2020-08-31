@@ -39,11 +39,13 @@ jobs:
     - name: Bootstrap OS.
       run: |
         cp -rf ./.pbuilderrc ~/.pbuilderrc
+        sudo mkdir /var/cache/pbuilder
+        sudo chmod 777 /var/cache/pbuilder
         OS=raspbian DIST=buster ARCH=armhf pbuilder --create
       shell: bash
     - name: Build deb packages.
       run: |
-        bash build_deb_cloud.sh 0.2.0 armhf
+        bash ./build_deb_cloud.sh 0.2.0 armhf
     env:
       GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
