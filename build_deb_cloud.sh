@@ -10,6 +10,9 @@ fi
 version_no=$1
 architect_code=$2
 
+commit_id=$(git rev-parse HEAD)
+git archive --format=tar.gz --prefix=rdbox/ -o ../rdbox_"${version_no}".orig.tar.gz "${commit_id}"
+
 cp -rf ../rdbox-middleware ../rdbox-middleware-deb
 cd ../rdbox-middleware-deb/ || exit
 git branch --delete dfsg_clean
@@ -23,6 +26,8 @@ git checkout master
 git pull --no-edit . dfsg_clean
 rm -rf ../build-area/
 
+# gbp
+cd ../rdbox-middleware/ || exit
 if ! gbp buildpackage -p"$(pwd)"/gpg-passphrase.sh --git-pristine-tar-commit --git-export-dir=../build-area -S -sd;
 then
   echo "Retry Over."
@@ -30,7 +35,6 @@ then
 fi
 
 # need sudo
-cd ../rdbox-middleware/ || exit
 if [ "$architect_code" = "armhf" ]; then
   sudo OS=raspbian DIST=buster ARCH=armhf pbuilder --build ../build-area/rdbox_"${version_no}".dsc
 elif [ "$architect_code" = "amd64" ]; then
