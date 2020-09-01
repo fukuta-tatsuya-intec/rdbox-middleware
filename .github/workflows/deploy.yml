@@ -59,8 +59,10 @@ jobs:
       shell: bash
     - name: Build deb packages.
       run: |
-        bash ./build_deb_cloud.sh 0.2.0 armhf
-        bash ./build_deb_cloud.sh 0.2.0 amd64
+        git tag -d ${RELEASE_VERSION}
+        bash ./build_deb_cloud.sh $(cut -d'v' -f 2 <<<${RELEASE_VERSION}) armhf
+        bash ./build_deb_cloud.sh $(cut -d'v' -f 2 <<<${RELEASE_VERSION}) amd64
+      shell: bash
     env:
       GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}

@@ -10,6 +10,7 @@ fi
 version_no=$1
 architect_code=$2
 
+gbp buildpackage -p"$(pwd)"/gpg-passphrase.sh --git-pristine-tar-commit --git-export-dir=../build-area -S -sd
 if ! gbp buildpackage -p"$(pwd)"/gpg-passphrase.sh --git-pristine-tar-commit --git-export-dir=../build-area -S -sd;
 then
   echo "Retry Over."
