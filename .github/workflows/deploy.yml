@@ -2,8 +2,8 @@
 name: RDBOX Middleware Build and Deploy
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*.*.*'
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -19,9 +19,12 @@ jobs:
         echo "pinentry-program /usr/bin/pinentry-gtk-2
         allow-loopback-pinentry" > ~/.gnupg/gpg-agent.conf
         echo RELOADAGENT | gpg-connect-agent
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
       shell: bash
     - name: Install dependency packages.
       run: |
+        echo $RELEASE_VERSION
+        echo ${{ env.RELEASE_VERSION }}
         sudo apt update
         sudo apt install -y \
           git-buildpackage \
