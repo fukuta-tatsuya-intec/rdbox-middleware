@@ -19,7 +19,7 @@ jobs:
         echo "pinentry-program /usr/bin/pinentry-gtk-2
         allow-loopback-pinentry" > ~/.gnupg/gpg-agent.conf
         echo RELOADAGENT | gpg-connect-agent
-        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
+        echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
       shell: bash
     - name: Install dependency packages.
       run: |
